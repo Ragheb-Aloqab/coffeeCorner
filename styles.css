@@ -458,6 +458,86 @@ img { display: block; }
 .splash-btn i { font-size: 0.9rem; }
 
 /* ═══════════════════════════════════════════
+   شريط التنقل السفلي للموبايل (Bottom Navigation)
+═══════════════════════════════════════════ */
+.bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
+  position: relative;
+  z-index: 50;
+  box-shadow: 0 -4px 20px rgba(44,26,29,0.08);
+  flex-shrink: 0;
+  width: 100%;
+  direction: rtl;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 0;
+  color: var(--text-3);
+  font-size: 0.65rem;
+  font-weight: 600;
+  transition: color var(--transition), transform 0.15s;
+  position: relative;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-item i {
+  font-size: 1.25rem;
+  transition: color var(--transition), transform 0.15s;
+  display: block;
+}
+
+.nav-item span {
+  font-size: 0.65rem;
+  font-weight: 600;
+  display: block;
+  line-height: 1;
+}
+
+.nav-item.active {
+  color: var(--amber);
+}
+
+.nav-item.active i {
+  color: var(--amber);
+  transform: translateY(-1px);
+}
+
+.nav-cart-badge {
+  position: absolute;
+  top: 1px;
+  right: calc(50% - 16px);
+  min-width: 16px;
+  height: 16px;
+  background: var(--amber);
+  color: var(--espresso);
+  font-size: 0.58rem;
+  font-weight: 800;
+  border-radius: 8px;
+  padding: 0 3px;
+  border: 2px solid var(--surface);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-cart-badge.visible {
+  display: flex;
+}
+
+/* ═══════════════════════════════════════════
    الهيدر العام والبحث للديسكتوب
 ═══════════════════════════════════════════ */
 .app-header {
