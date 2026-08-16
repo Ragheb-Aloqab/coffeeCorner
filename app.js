@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════
-//  برران قهوة — بيانات المنتجات والحالة
+//  كوفي كورنر — بيانات المنتجات والحالة
 // ════════════════════════════════════════════════════
 
 // ─── بيانات الفئات ─────────────────────────────────
@@ -190,7 +190,7 @@ function calcCartTotals() {
 
 function cartItemCount() { return state.cart.reduce((s, i) => s + i.qty, 0); }
 function formatSAR(n) { return n.toFixed(2); }
-function generateOrderId() { return 'BRN-' + Date.now().toString(36).toUpperCase(); }
+function generateOrderId() { return 'CC-' + Date.now().toString(36).toUpperCase(); }
 
 function renderStars(rating) {
   const full = Math.floor(rating);
