@@ -232,11 +232,15 @@ function removeCartItem(cartId) { state.cart = state.cart.filter(i => i.cartId !
 
 // ─── التنقل ───────────────────────────────────────────
 
+let isNavigating = false;
+
 function navigateTo(screenId, params = {}) {
+  if (isNavigating) return;
   const currentEl = document.getElementById(state.currentScreen + '-screen');
   const nextEl    = document.getElementById(screenId + '-screen');
   if (!nextEl || state.currentScreen === screenId) return;
 
+  isNavigating = true;
   const depthMap = { splash:0, home:1, category:2, product:3, cart:2, checkout:3, orders:2 };
   const goingBack = (depthMap[screenId]||0) < (depthMap[state.currentScreen]||0);
 
@@ -256,7 +260,10 @@ function navigateTo(screenId, params = {}) {
     nextEl.style.transition = 'transform 0.32s cubic-bezier(0.4,0,0.2,1),opacity 0.32s ease';
     nextEl.style.transform  = 'translateX(0)';
     nextEl.style.opacity    = '1';
-    setTimeout(() => { nextEl.style.cssText = ''; }, 340);
+    setTimeout(() => {
+      nextEl.style.cssText = '';
+      isNavigating = false;
+    }, 340);
   }));
 
   state.prevScreen = state.currentScreen;
@@ -887,9 +894,23 @@ function bumpBadge() {
 }
 
 function updateNavHighlight() {
-  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
-  const map={home:'nav-home',category:'nav-home',product:'nav-home',cart:'nav-cart',checkout:'nav-cart',orders:'nav-orders'};
-  const id=map[state.currentScreen]; if(id){ const el=document.getElementById(id); if(el) el.classList.add('active'); }
+  const cur = state.currentScreen;
+  document.querySelectorAll('.bottom-nav').forEach(nav => {
+    const items = nav.querySelectorAll('.nav-item');
+    items.forEach(item => {
+      item.classList.remove('active');
+      const onclickAttr = item.getAttribute('onclick') || '';
+      if (cur === 'home' && (onclickAttr.includes("'home'") || onclickAttr === '')) {
+        item.classList.add('active');
+      } else if ((cur === 'category' || cur === 'product') && onclickAttr.includes("'category'")) {
+        item.classList.add('active');
+      } else if ((cur === 'cart' || cur === 'checkout') && onclickAttr.includes("'cart'")) {
+        item.classList.add('active');
+      } else if (cur === 'orders' && onclickAttr.includes("'orders'")) {
+        item.classList.add('active');
+      }
+    });
+  });
 }
 
 // ─── الإشعار المنبثق ──────────────────────────────────
