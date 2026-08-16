@@ -112,7 +112,7 @@ const PRODUCTS = [
   // ── قهوة ──
   {
     id: 'k1', category: 'coffee', name: 'كابتشينو',
-    desc: 'إسبريسو غني مع رغوة حليب مخملية ناعمة وفن لاتيه (يتوفر خيار خلطة الماتشا اليابانية)',
+    desc: 'إسبريسو غني مع رغوة حليب مخملية ناعمة وفن لاتيه احترافي',
     price: 18, rating: 4.9, reviews: 612,
     img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-mug-hot',
@@ -151,7 +151,7 @@ const PRODUCTS = [
 ];
 
 const TODAY_OFFERS = [
-  { productId: 'k1', label: 'عرض اليوم',    discount: 0, desc: 'كابتشينو كوفي كورنر الخاص مع إمكانية إضافة الماتشا' },
+  { productId: 'k1', label: 'عرض اليوم',    discount: 0, desc: 'كابتشينو كوفي كورنر الخاص المُعَد بعناية فائقة' },
   { productId: 's3', label: 'الأكثر طلباً', discount: 3, desc: 'استمتع بكيك الشوكولاتة المنصهرة الساخنة بخصم خاص' },
   { productId: 'c1', label: 'أفضل قيمة',    discount: 2, desc: 'كرواسون زبدة ذهبي هش على الطريقة الفرنسية الاصيلة' },
   { productId: 'j1', label: 'طازج يومياً',  discount: 0, desc: 'عصير برتقال طازج معصور أمامك مباشرة بدون إضافة سكر' },
@@ -357,7 +357,7 @@ function renderHome() {
       <div class="hero-content">
         <div class="hero-badge"><i class="fa-solid fa-crown"></i> المشروب الأكثر طلباً اليوم</div>
         <h2 class="hero-title">كابتشينو كوفي كورنر الفاخر</h2>
-        <p class="hero-subtitle">إسبريسو غني مع رغوة حليب مخملية ناعمة، مع خيار إضافة خلطة الماتشا اليابانية الأصيلة 🍵</p>
+        <p class="hero-subtitle">إسبريسو غني مع رغوة حليب مخملية ناعمة ومحضرة بعناية فائقة لبداية يوم مثالية</p>
         <div class="hero-actions">
           <button class="hero-cta-btn" onclick="navigateTo('product',{productId:'k1'})">
             <i class="fa-solid fa-mug-hot"></i> اطلب الآن — 18.00 ر.س
