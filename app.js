@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════
-//  كوفي كورنر — بيانات المنتجات والحالة
+//  برون كوفي — بيانات المنتجات والحالة
 // ════════════════════════════════════════════════════
 
 // ─── بيانات الفئات ─────────────────────────────────
@@ -151,7 +151,7 @@ const PRODUCTS = [
 ];
 
 const TODAY_OFFERS = [
-  { productId: 'k1', label: 'عرض اليوم',    discount: 0, desc: 'كابتشينو كوفي كورنر الخاص المُعَد بعناية فائقة' },
+  { productId: 'k1', label: 'عرض اليوم',    discount: 0, desc: 'كابتشينو برون كوفي الخاص المُعَد بعناية فائقة' },
   { productId: 's3', label: 'الأكثر طلباً', discount: 3, desc: 'استمتع بكيك الشوكولاتة المنصهرة الساخنة بخصم خاص' },
   { productId: 'c1', label: 'أفضل قيمة',    discount: 2, desc: 'كرواسون زبدة ذهبي هش على الطريقة الفرنسية الاصيلة' },
   { productId: 'j1', label: 'طازج يومياً',  discount: 0, desc: 'عصير برتقال طازج معصور أمامك مباشرة بدون إضافة سكر' },
@@ -189,7 +189,7 @@ function calcCartTotals() {
 
 function cartItemCount() { return state.cart.reduce((s, i) => s + i.qty, 0); }
 function formatSAR(n) { return n.toFixed(2); }
-function generateOrderId() { return 'CC-' + Date.now().toString(36).toUpperCase(); }
+function generateOrderId() { return 'BRN-' + Date.now().toString(36).toUpperCase(); }
 
 function renderStars(rating) {
   const full = Math.floor(rating);
@@ -356,7 +356,7 @@ function renderHome() {
       <div class="hero-bg-img" style="background-image:url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80')"></div>
       <div class="hero-content">
         <div class="hero-badge"><i class="fa-solid fa-crown"></i> المشروب الأكثر طلباً اليوم</div>
-        <h2 class="hero-title">كابتشينو كوفي كورنر الفاخر</h2>
+        <h2 class="hero-title">كابتشينو برون كوفي الفاخر</h2>
         <p class="hero-subtitle">إسبريسو غني مع رغوة حليب مخملية ناعمة ومحضرة بعناية فائقة لبداية يوم مثالية</p>
         <div class="hero-actions">
           <button class="hero-cta-btn" onclick="navigateTo('product',{productId:'k1'})">
@@ -436,7 +436,7 @@ function renderHome() {
     <div class="desktop-top-header">
       <div class="home-greeting">
         <div class="greeting-sub">${greeting} <i class="fa-solid fa-hand-wave" style="color:var(--amber)"></i></div>
-        <h1 class="greeting-main">أهلاً بك في كوفي كورنر</h1>
+        <h1 class="greeting-main">أهلاً بك في برون كوفي</h1>
       </div>
       <div class="desktop-search-wrap">
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -765,7 +765,7 @@ function renderCheckout() {
         <div class="delivery-option">
           <div class="do-check"><i class="fa-solid fa-circle-dot" style="color:var(--amber);font-size:1.1rem"></i></div>
           <div class="do-info">
-            <div class="do-name">توصيل كوفي كورنر السريع</div>
+            <div class="do-name">توصيل برون كوفي السريع</div>
             <div class="do-name-en">Express Delivery</div>
           </div>
           <div class="do-time"><i class="fa-regular fa-clock"></i> 30 - 45 دقيقة</div>
@@ -800,7 +800,7 @@ function confirmOrder() {
   if (total < MIN_ORDER) return;
   state.activeOrder = {
     id: generateOrderId(), items:[...state.cart], total,
-    delivery:'توصيل كوفي كورنر', deliveryEn:'Express Delivery',
+    delivery:'توصيل برون كوفي', deliveryEn:'Express Delivery',
     deliveryTime:'30 - 45 دقيقة', placedAt:new Date(), status:'received',
   };
   state.cart = [];
