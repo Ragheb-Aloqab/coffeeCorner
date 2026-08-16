@@ -363,7 +363,7 @@ function renderHome() {
             <i class="fa-solid fa-mug-hot"></i> اطلب الآن — 18.00 ر.س
           </button>
           <div class="hero-delivery-badge">
-            <i class="fa-solid fa-truck-fast"></i> التوصيل عبر البريد السعودي (8 ص - 12 ظ)
+            <i class="fa-solid fa-truck-fast"></i> خدمة التوصيل السريع لباب بيتك (30 - 45 دقيقة)
           </div>
         </div>
       </div>
@@ -727,7 +727,7 @@ function renderCart() {
         </div>
         <div class="cart-summary-box">
           <div class="cs-row"><span class="cs-lbl">الإجمالي الفرعي (${count} منتج)</span><span class="cs-val">${formatSAR(subtotal)} ر.س</span></div>
-          <div class="cs-row"><span class="cs-lbl">التوصيل عبر البريد السعودي</span><span class="cs-val delivery">8 ص - 12 ظ</span></div>
+          <div class="cs-row"><span class="cs-lbl">خدمة التوصيل السريع</span><span class="cs-val delivery">30 - 45 دقيقة</span></div>
           <div class="cs-divider"></div>
           <div class="cs-row total"><span class="cs-lbl">المجموع الكلي</span><span class="cs-val">${formatSAR(total)} ر.س</span></div>
         </div>
@@ -761,16 +761,16 @@ function renderCheckout() {
   container.innerHTML = `
     <div class="checkout-inner">
       <div class="chk-section">
-        <div class="chk-section-title"><i class="fa-solid fa-truck"></i> شركة التوصيل</div>
+        <div class="chk-section-title"><i class="fa-solid fa-truck"></i> خدمة التوصيل</div>
         <div class="delivery-option">
           <div class="do-check"><i class="fa-solid fa-circle-dot" style="color:var(--amber);font-size:1.1rem"></i></div>
           <div class="do-info">
-            <div class="do-name">البريد السعودي</div>
-            <div class="do-name-en">Saudi Post</div>
+            <div class="do-name">توصيل كوفي كورنر السريع</div>
+            <div class="do-name-en">Express Delivery</div>
           </div>
-          <div class="do-time"><i class="fa-regular fa-clock"></i> 8 ص – 12 ظ</div>
+          <div class="do-time"><i class="fa-regular fa-clock"></i> 30 - 45 دقيقة</div>
         </div>
-        <div class="chk-note"><i class="fa-solid fa-info-circle"></i> سيتم التوصيل من 8 صباحاً حتى 12 ظهراً.</div>
+        <div class="chk-note"><i class="fa-solid fa-info-circle"></i> سيتم تحضير وتوصيل طلبك طازجاً خلال 30 إلى 45 دقيقة.</div>
       </div>
 
       <div class="chk-section">
@@ -800,8 +800,8 @@ function confirmOrder() {
   if (total < MIN_ORDER) return;
   state.activeOrder = {
     id: generateOrderId(), items:[...state.cart], total,
-    delivery:'البريد السعودي', deliveryEn:'Saudi Post',
-    deliveryTime:'8 صباحاً – 12 ظهراً', placedAt:new Date(), status:'received',
+    delivery:'توصيل كوفي كورنر', deliveryEn:'Express Delivery',
+    deliveryTime:'30 - 45 دقيقة', placedAt:new Date(), status:'received',
   };
   state.cart = [];
   updateAllBadges(); renderSidebarCart(); navigateTo('orders');
@@ -826,7 +826,7 @@ function renderOrders() {
   const steps = [
     { label:'استلام الطلب',    desc:'تم استلام طلبك بنجاح',            done:true,  active:false, icon:'fa-solid fa-check' },
     { label:'جاري التحضير',   desc:'فريقنا يعمل على تحضير طلبك',      done:false, active:true,  icon:'fa-solid fa-fire-burner' },
-    { label:'في الطريق إليك', desc:'تم تسليمه للبريد السعودي',         done:false, active:false, icon:'fa-solid fa-truck' },
+    { label:'في الطريق إليك', desc:'تم تسليمه لسائق التوصيل',        done:false, active:false, icon:'fa-solid fa-truck' },
     { label:'تم التسليم',      desc:'وصل طلبك! استمتع بوجبتك',         done:false, active:false, icon:'fa-solid fa-house-chimney' },
   ];
   const tl = steps.map(s=>`
