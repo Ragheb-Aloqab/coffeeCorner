@@ -18,35 +18,34 @@ const MATCHA_ADDON = {
   price: 5,
 };
 
-// صور Unsplash عالية الجودة
 const PRODUCTS = [
   // ── فطائر ──
   {
     id: 'f1', category: 'fatayer', name: 'فطيرة جبن',
     desc: 'فطيرة دافئة محشوة بالجبن الأبيض الكريمي الطري',
     price: 12, rating: 4.8, reviews: 124,
-    img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-bread-slice'
   },
   {
     id: 'f2', category: 'fatayer', name: 'فطيرة سبانخ',
     desc: 'فطيرة شهية محشوة بالسبانخ المتبل بالتوابل الشرقية',
     price: 10, rating: 4.6, reviews: 98,
-    img: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-bread-slice'
   },
   {
     id: 'f3', category: 'fatayer', name: 'فطيرة لحم',
     desc: 'فطيرة اللحم المفروم المتبل، مخبوزة بإتقان',
     price: 14, rating: 4.9, reviews: 203,
-    img: 'https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-bread-slice'
   },
   {
     id: 'f4', category: 'fatayer', name: 'فطيرة زعتر',
     desc: 'خلطة زعتر بلدي أصيل بزيت الزيتون البكر',
     price: 9, rating: 4.7, reviews: 176,
-    img: 'https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-bread-slice'
   },
 
@@ -55,28 +54,28 @@ const PRODUCTS = [
     id: 'c1', category: 'croissants', name: 'كرواسون زبدة',
     desc: 'كرواسون ذهبي هش على الطريقة الفرنسية الكلاسيكية',
     price: 11, rating: 4.8, reviews: 312,
-    img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-cookie'
   },
   {
     id: 'c2', category: 'croissants', name: 'كرواسون لوز',
     desc: 'مخبوز مرتين مع كريمة اللوز الفاخرة والرقائق',
     price: 14, rating: 4.9, reviews: 189,
-    img: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-cookie'
   },
   {
     id: 'c3', category: 'croissants', name: 'كرواسون شوكولاتة',
     desc: 'محشو بكريمة الشوكولاتة الداكنة الغنية',
     price: 13, rating: 4.7, reviews: 241,
-    img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-cookie'
   },
   {
     id: 'c4', category: 'croissants', name: 'كرواسون زعتر',
     desc: 'كرواسون بالزعتر البلدي وزيت الزيتون الأصيل',
     price: 12, rating: 4.5, reviews: 134,
-    img: 'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-cookie'
   },
 
@@ -85,37 +84,37 @@ const PRODUCTS = [
     id: 's1', category: 'sweets', name: 'كنافة',
     desc: 'كنافة بالجبن والقطر المذاب، طرية وشهية بامتياز',
     price: 16, rating: 4.9, reviews: 456,
-    img: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-cake-candles'
   },
   {
     id: 's2', category: 'sweets', name: 'بقلاوة',
     desc: 'طبقات رقيقة من العجين بالمكسرات وشراب العسل',
     price: 13, rating: 4.7, reviews: 287,
-    img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-cake-candles'
   },
   {
     id: 's3', category: 'sweets', name: 'كيك لافا شوكولاتة',
     desc: 'كيك دافئ بقلب من الشوكولاتة المنصهرة الساخنة',
     price: 18, rating: 4.9, reviews: 534,
-    img: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-cake-candles'
   },
   {
     id: 's4', category: 'sweets', name: 'تشيز كيك',
     desc: 'تشيز كيك نيويورك الكريمي بصوص الفراولة الطازجة',
     price: 17, rating: 4.8, reviews: 398,
-    img: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-cake-candles'
   },
 
-  // ── قهوة ── (كابتشينو فقط)
+  // ── قهوة ──
   {
     id: 'k1', category: 'coffee', name: 'كابتشينو',
-    desc: 'إسبريسو غني مع رغوة حليب مخملية ناعمة وفن لاتيه',
+    desc: 'إسبريسو غني مع رغوة حليب مخملية ناعمة وفن لاتيه (يتوفر خيار خلطة الماتشا اليابانية)',
     price: 18, rating: 4.9, reviews: 612,
-    img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-mug-hot',
     hasMatchaAddon: true
   },
@@ -125,38 +124,37 @@ const PRODUCTS = [
     id: 'j1', category: 'juices', name: 'عصير برتقال طازج',
     desc: 'برتقال فالنسيا معصور طازجاً بدون إضافات',
     price: 14, rating: 4.8, reviews: 289,
-    img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-glass-water'
   },
   {
     id: 'j2', category: 'juices', name: 'مانجو مثلج',
     desc: 'مانجو ألفونسو ممزوج مع لمسة ليمون منعشة',
     price: 16, rating: 4.7, reviews: 203,
-    img: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-glass-water'
   },
   {
     id: 'j3', category: 'juices', name: 'بطيخ نعناع',
     desc: 'بطيخ مثلج مع أوراق النعناع الطازجة المنعشة',
     price: 13, rating: 4.6, reviews: 167,
-    img: 'https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-glass-water'
   },
   {
     id: 'j4', category: 'juices', name: 'عصير أخضر',
     desc: 'خيار وسبانخ وتفاح وزنجبيل لصحة مثالية',
     price: 15, rating: 4.5, reviews: 143,
-    img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
     icon: 'fa-solid fa-glass-water'
   },
 ];
 
-// عروض اليوم
 const TODAY_OFFERS = [
-  { productId: 'k1', label: 'عرض اليوم',    discount: 0, desc: 'كابتشينو مُعَد بعناية ليبدأ يومك بشكل مثالي' },
-  { productId: 's3', label: 'الأكثر طلباً', discount: 3, desc: 'استمتع بكيك الشوكولاتة المنصهرة الساخنة' },
-  { productId: 'c1', label: 'أفضل قيمة',    discount: 2, desc: 'كرواسون زبدة ذهبي هش على الطريقة الفرنسية' },
-  { productId: 'j1', label: 'طازج يومياً',  discount: 0, desc: 'عصير برتقال طازج معصور أمامك مباشرة' },
+  { productId: 'k1', label: 'عرض اليوم',    discount: 0, desc: 'كابتشينو كوفي كورنر الخاص مع إمكانية إضافة الماتشا' },
+  { productId: 's3', label: 'الأكثر طلباً', discount: 3, desc: 'استمتع بكيك الشوكولاتة المنصهرة الساخنة بخصم خاص' },
+  { productId: 'c1', label: 'أفضل قيمة',    discount: 2, desc: 'كرواسون زبدة ذهبي هش على الطريقة الفرنسية الاصيلة' },
+  { productId: 'j1', label: 'طازج يومياً',  discount: 0, desc: 'عصير برتقال طازج معصور أمامك مباشرة بدون إضافة سكر' },
 ];
 
 const MIN_ORDER = 30;
@@ -168,11 +166,12 @@ const state = {
   prevScreen: null,
   selectedCategoryId: null,
   selectedProductId: null,
+  activeFilterCategory: 'all',
+  searchQuery: '',
   productQty: 1,
   matchaAddonSelected: false,
   cart: [],
   activeOrder: null,
-  sidebarOpen: false,
 };
 
 let cartIdCounter = 1;
@@ -284,7 +283,6 @@ function renderScreen(id) {
   const fn = {home:renderHome, category:renderCategory, product:renderProduct,
                cart:renderCart, checkout:renderCheckout, orders:renderOrders};
   if (fn[id]) fn[id]();
-  // Sync sidebar mini cart
   renderSidebarCart();
 }
 
@@ -311,10 +309,10 @@ function renderSidebarCart() {
   `).join('');
   const more = count > 3 ? `<div class="sci-more">+${count-3} منتجات أخرى</div>` : '';
   el.innerHTML = `
-    <div class="sidebar-cart-label"><i class="fa-solid fa-cart-shopping"></i> سلة الشراء</div>
+    <div class="sidebar-cart-label"><i class="fa-solid fa-cart-shopping"></i> ملخص سلة الشراء</div>
     <div class="sidebar-cart-items">${itemsHTML}${more}</div>
     <div class="sidebar-cart-total">
-      <span>الإجمالي</span>
+      <span>المجموع</span>
       <span class="sct-val">${formatSAR(total)} ر.س</span>
     </div>
     <button class="sidebar-checkout-btn" onclick="navigateTo('cart')" ${total<MIN_ORDER?'disabled':''}>
@@ -334,7 +332,7 @@ function updateSidebarActive() {
   });
 }
 
-// ─── الصفحة الرئيسية ──────────────────────────────────
+// ─── الصفحة الرئيسية الديسكتوب والحيّة ─────────────────────
 
 function renderHome() {
   const container = document.getElementById('home-content');
@@ -342,6 +340,51 @@ function renderHome() {
   const hr = new Date().getHours();
   const greeting = hr<12?'صباح الخير':hr<17?'مساء الخير':'مساء النور';
 
+  // تصفية المنتجات حسب البحث والفلتر
+  let filteredProducts = PRODUCTS;
+  if (state.activeFilterCategory !== 'all') {
+    filteredProducts = filteredProducts.filter(p => p.category === state.activeFilterCategory);
+  }
+  if (state.searchQuery.trim() !== '') {
+    const q = state.searchQuery.trim().toLowerCase();
+    filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
+  }
+
+  // الهيرو بنر للديسكتوب
+  const heroHTML = `
+    <div class="desktop-hero-banner">
+      <div class="hero-bg-img" style="background-image:url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80')"></div>
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fa-solid fa-crown"></i> المشروب الأكثر طلباً اليوم</div>
+        <h2 class="hero-title">كابتشينو كوفي كورنر الفاخر</h2>
+        <p class="hero-subtitle">إسبريسو غني مع رغوة حليب مخملية ناعمة، مع خيار إضافة خلطة الماتشا اليابانية الأصيلة 🍵</p>
+        <div class="hero-actions">
+          <button class="hero-cta-btn" onclick="navigateTo('product',{productId:'k1'})">
+            <i class="fa-solid fa-mug-hot"></i> اطلب الآن — 18.00 ر.س
+          </button>
+          <div class="hero-delivery-badge">
+            <i class="fa-solid fa-truck-fast"></i> التوصيل عبر البريد السعودي (8 ص - 12 ظ)
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // شريط فلتر الفئات
+  const catTabsHTML = `
+    <div class="desktop-cat-tabs">
+      <button class="cat-tab ${state.activeFilterCategory==='all'?'active':''}" onclick="setFilterCategory('all')">
+        <i class="fa-solid fa-border-all"></i> الكل (${PRODUCTS.length})
+      </button>
+      ${CATEGORIES.map(c => `
+        <button class="cat-tab ${state.activeFilterCategory===c.id?'active':''}" onclick="setFilterCategory('${c.id}')">
+          <i class="${c.icon}"></i> ${c.name} (${getProductsByCategory(c.id).length})
+        </button>
+      `).join('')}
+    </div>
+  `;
+
+  // شبكة العروض
   const offersHTML = TODAY_OFFERS.map(o => {
     const p = getProduct(o.productId);
     if (!p) return '';
@@ -371,6 +414,7 @@ function renderHome() {
       </div>`;
   }).join('');
 
+  // بطاقات الفئات الملونة
   const catsHTML = CATEGORIES.map(cat => {
     const count = getProductsByCategory(cat.id).length;
     return `
@@ -385,15 +429,27 @@ function renderHome() {
       </div>`;
   }).join('');
 
+  // قائمة المنتجات المفلوترة
+  const productsListHTML = filteredProducts.map(p => productCardHTML(p)).join('');
+
   container.innerHTML = `
-    <div class="home-greeting">
-      <div class="greeting-sub">${greeting} <i class="fa-solid fa-hand-wave" style="color:var(--amber)"></i></div>
-      <h1 class="greeting-main">ماذا تريد اليوم؟</h1>
+    <div class="desktop-top-header">
+      <div class="home-greeting">
+        <div class="greeting-sub">${greeting} <i class="fa-solid fa-hand-wave" style="color:var(--amber)"></i></div>
+        <h1 class="greeting-main">أهلاً بك في كوفي كورنر</h1>
+      </div>
+      <div class="desktop-search-wrap">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" class="desktop-search-input" placeholder="ابحث عن قهوة، حلويات، فطائر..." value="${state.searchQuery}" oninput="onSearchInput(this.value)">
+        ${state.searchQuery?`<button class="clear-search" onclick="onSearchInput('')"><i class="fa-solid fa-xmark"></i></button>`:''}
+      </div>
     </div>
+
+    ${heroHTML}
 
     <div class="section-header">
       <div class="section-label-wrap">
-        <span class="section-label"><i class="fa-solid fa-star"></i> عروض اليوم</span>
+        <span class="section-label"><i class="fa-solid fa-star"></i> عروض ومميزات اليوم</span>
       </div>
     </div>
     <div class="offers-row" id="offers-row">${offersHTML}</div>
@@ -402,11 +458,38 @@ function renderHome() {
 
     <div class="section-header">
       <div class="section-label-wrap">
-        <span class="section-label"><i class="fa-solid fa-border-all"></i> تصفح القائمة</span>
+        <span class="section-label"><i class="fa-solid fa-border-all"></i> أقسام القائمة</span>
       </div>
     </div>
     <div class="cats-grid" id="cats-grid">${catsHTML}</div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-header">
+      <div class="section-label-wrap">
+        <span class="section-label"><i class="fa-solid fa-utensils"></i> المنتجات (${filteredProducts.length})</span>
+      </div>
+      ${catTabsHTML}
+    </div>
+    <div class="products-grid" id="main-products-grid">
+      ${filteredProducts.length ? productsListHTML : `
+        <div class="no-results-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <div>عذراً، لم نجد أي منتجات تطابق "${state.searchQuery}"</div>
+          <button class="cta-btn" onclick="onSearchInput('')">إعادة تعيين البحث</button>
+        </div>`}
+    </div>
   `;
+}
+
+function setFilterCategory(catId) {
+  state.activeFilterCategory = catId;
+  renderHome();
+}
+
+function onSearchInput(val) {
+  state.searchQuery = val;
+  renderHome();
 }
 
 function quickAddOffer(productId) {
@@ -422,7 +505,6 @@ function renderCategory() {
   const prods = getProductsByCategory(state.selectedCategoryId);
   if (!cat) return;
 
-  // تحديث هيدر الشاشة
   const hdr = document.getElementById('category-header');
   if (hdr) {
     const cnt = cartItemCount();
@@ -477,7 +559,7 @@ function quickAddProduct(id) {
   updateAllBadges(); bumpBadge(); renderSidebarCart();
 }
 
-// ─── تفاصيل المنتج ────────────────────────────────────
+// ─── تفاصيل المنتج (عرض سينمائي للديسكتوب) ───────────────────
 
 function renderProduct() {
   const p = getProduct(state.selectedProductId);
@@ -511,7 +593,7 @@ function renderProduct() {
           <span class="toggle-track"><span class="toggle-thumb"></span></span>
         </label>
         <div class="addon-info">
-          <div class="addon-name"><i class="fa-solid fa-leaf" style="color:var(--matcha)"></i> إضافة ماتشا</div>
+          <div class="addon-name"><i class="fa-solid fa-leaf" style="color:var(--matcha)"></i> إضافة ماتشا يابانية</div>
           <div class="addon-desc">${MATCHA_ADDON.desc}</div>
           <div class="addon-price">+ ${MATCHA_ADDON.price} ر.س</div>
         </div>
@@ -522,28 +604,30 @@ function renderProduct() {
   if (!container) return;
 
   container.innerHTML = `
-    <div class="product-hero-wrap">
-      ${imgTag(p.img, p.name, 'product-hero-img')}
-      <div class="product-hero-fallback"><i class="${p.icon}"></i></div>
-      <div class="product-hero-overlay"></div>
-    </div>
-    <div class="product-detail-body">
-      <div class="product-detail-top">
-        <span class="product-cat-tag"><i class="${cat?.icon||''}"></i> ${cat?.name||''}</span>
-        <div class="product-detail-rating">${renderStars(p.rating)} <strong>${p.rating}</strong> <span>(${p.reviews} تقييم)</span></div>
+    <div class="desktop-product-split">
+      <div class="product-hero-wrap">
+        ${imgTag(p.img, p.name, 'product-hero-img')}
+        <div class="product-hero-fallback"><i class="${p.icon}"></i></div>
+        <div class="product-hero-overlay"></div>
       </div>
-      <h2 class="product-detail-name">${p.name}</h2>
-      <p class="product-detail-desc">${p.desc}</p>
-      ${matchaHTML}
-      <div class="product-detail-controls">
-        <div>
-          <div class="ctrl-label">السعر للوحدة</div>
-          <div class="product-detail-price" id="detail-price">${p.price} <small>ر.س</small></div>
+      <div class="product-detail-body">
+        <div class="product-detail-top">
+          <span class="product-cat-tag"><i class="${cat?.icon||''}"></i> ${cat?.name||''}</span>
+          <div class="product-detail-rating">${renderStars(p.rating)} <strong>${p.rating}</strong> <span>(${p.reviews} تقييم)</span></div>
         </div>
-        <div class="qty-selector" role="group" aria-label="الكمية">
-          <button class="qty-btn" onclick="changeProductQty(1)" aria-label="زيادة"><i class="fa-solid fa-plus"></i></button>
-          <span class="qty-val" id="qty-display">1</span>
-          <button class="qty-btn" onclick="changeProductQty(-1)" aria-label="تقليل"><i class="fa-solid fa-minus"></i></button>
+        <h2 class="product-detail-name">${p.name}</h2>
+        <p class="product-detail-desc">${p.desc}</p>
+        ${matchaHTML}
+        <div class="product-detail-controls">
+          <div>
+            <div class="ctrl-label">السعر للوحدة</div>
+            <div class="product-detail-price" id="detail-price">${p.price} <small>ر.س</small></div>
+          </div>
+          <div class="qty-selector" role="group" aria-label="الكمية">
+            <button class="qty-btn" onclick="changeProductQty(1)" aria-label="زيادة"><i class="fa-solid fa-plus"></i></button>
+            <span class="qty-val" id="qty-display">1</span>
+            <button class="qty-btn" onclick="changeProductQty(-1)" aria-label="تقليل"><i class="fa-solid fa-minus"></i></button>
+          </div>
         </div>
       </div>
     </div>`;
@@ -573,7 +657,7 @@ function doAddToCart() {
   showToast(`<i class="fa-solid fa-circle-check"></i> أُضيف ${state.productQty}× إلى السلة!`);
 }
 
-// ─── السلة ────────────────────────────────────────────
+// ─── السلة (تقسيم ديسكتوب ذكي) ───────────────────────────
 
 function renderCart() {
   const container = document.getElementById('cart-content');
@@ -626,28 +710,34 @@ function renderCart() {
   const rem = Math.max(0,MIN_ORDER-total);
 
   container.innerHTML = `
-    <div class="cart-items-list">${itemsHTML}</div>
-    <div class="min-bar ${minMet?'success':'warning'}">
-      <div class="min-bar-row">
-        <span class="min-bar-msg">
-          <i class="fa-solid ${minMet?'fa-circle-check':'fa-circle-exclamation'}"></i>
-          ${minMet?'تم الوصول للحد الأدنى!':'الحد الأدنى للطلب '+MIN_ORDER+' ر.س'}
-        </span>
-        <span class="min-bar-remain">${minMet?`${total.toFixed(2)} ر.س`:`باقي ${rem.toFixed(2)} ر.س`}</span>
+    <div class="desktop-cart-split">
+      <div class="cart-items-column">
+        <div class="cart-items-list">${itemsHTML}</div>
       </div>
-      <div class="min-bar-track"><div class="min-bar-fill" style="width:${prog}%"></div></div>
-    </div>
-    <div class="cart-summary-box">
-      <div class="cs-row"><span class="cs-lbl">الإجمالي الفرعي (${count} منتج)</span><span class="cs-val">${formatSAR(subtotal)} ر.س</span></div>
-      <div class="cs-row"><span class="cs-lbl">التوصيل</span><span class="cs-val delivery">يُحسب عند الدفع</span></div>
-      <div class="cs-divider"></div>
-      <div class="cs-row total"><span class="cs-lbl">المجموع الكلي</span><span class="cs-val">${formatSAR(total)} ر.س</span></div>
-    </div>
-    <div class="cart-cta-wrap">
-      <button class="cta-btn full" onclick="navigateTo('checkout')" ${!minMet?'disabled':''}>
-        <i class="fa-solid fa-arrow-left"></i> إتمام الطلب
-      </button>
-      ${!minMet?`<p class="cart-min-note"><i class="fa-solid fa-info-circle"></i> أضف ${formatSAR(rem)} ر.س للمتابعة</p>`:''}
+      <div class="cart-summary-column">
+        <div class="min-bar ${minMet?'success':'warning'}">
+          <div class="min-bar-row">
+            <span class="min-bar-msg">
+              <i class="fa-solid ${minMet?'fa-circle-check':'fa-circle-exclamation'}"></i>
+              ${minMet?'تم الوصول للحد الأدنى!':'الحد الأدنى للطلب '+MIN_ORDER+' ر.س'}
+            </span>
+            <span class="min-bar-remain">${minMet?`${total.toFixed(2)} ر.س`:`باقي ${rem.toFixed(2)} ر.س`}</span>
+          </div>
+          <div class="min-bar-track"><div class="min-bar-fill" style="width:${prog}%"></div></div>
+        </div>
+        <div class="cart-summary-box">
+          <div class="cs-row"><span class="cs-lbl">الإجمالي الفرعي (${count} منتج)</span><span class="cs-val">${formatSAR(subtotal)} ر.س</span></div>
+          <div class="cs-row"><span class="cs-lbl">التوصيل عبر البريد السعودي</span><span class="cs-val delivery">8 ص - 12 ظ</span></div>
+          <div class="cs-divider"></div>
+          <div class="cs-row total"><span class="cs-lbl">المجموع الكلي</span><span class="cs-val">${formatSAR(total)} ر.س</span></div>
+        </div>
+        <div class="cart-cta-wrap">
+          <button class="cta-btn full" onclick="navigateTo('checkout')" ${!minMet?'disabled':''}>
+            <i class="fa-solid fa-arrow-left"></i> إتمام الطلب
+          </button>
+          ${!minMet?`<p class="cart-min-note"><i class="fa-solid fa-info-circle"></i> أضف ${formatSAR(rem)} ر.س للمتابعة</p>`:''}
+        </div>
+      </div>
     </div>`;
 }
 
@@ -770,7 +860,7 @@ function renderOrders() {
         <div class="chk-item-row total-row"><span class="chk-val bold">${formatSAR(o.total)} ر.س</span><span class="chk-lbl bold">إجمالي الطلب</span></div>
       </div>
     </div>
-    <div style="padding:0 16px 24px">
+    <div style="padding:0 16px 24px;max-width:500px;margin:0 auto">
       <button class="cta-btn full" onclick="navigateTo('home')"><i class="fa-solid fa-plus"></i> طلب جديد</button>
     </div>`;
 }
