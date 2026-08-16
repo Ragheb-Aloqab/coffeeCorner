@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+  <meta name="description" content="برران قهوة — اطلب قهوتك الفنية والمعجنات الطازجة والعصائر. توصيل سريع عبر البريد السعودي."/>
+  <meta name="theme-color" content="#2C1A1D"/>
+  <title>برران قهوة — اطلب الآن</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <!-- Arabic Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- ═══════════════════════════════════════════
+     التطبيق الرئيسي
+═══════════════════════════════════════════ -->
+<div id="app">
+
+  <!-- ══ الشريط الجانبي (ديسكتوب فقط) ══ -->
+  <aside class="sidebar" id="sidebar">
+    <!-- SWAP_LOGO: استبدل هذه الكتلة بشعارك النهائي -->
+    <div class="sb-logo-wrap">
+      <div class="sb-logo" id="sb-logo" aria-label="شعار برران قهوة - مؤقت">
+        <div class="sb-logo-circle">
+          <i class="fa-solid fa-mug-hot"></i>
+        </div>
+        <div class="sb-logo-text">
+          <div class="sb-brand">برران قهوة</div>
+          <div class="sb-brand-sub">Broran Coffee</div>
+        </div>
+      </div>
+      <div class="sb-logo-placeholder-tag">شعار مؤقت</div>
+    </div>
+
+    <nav class="sb-nav" aria-label="التنقل الرئيسي">
+      <div class="sb-nav-label">القائمة</div>
+      <button class="sidebar-nav-link active" data-screen="home" onclick="navigateTo('home')" id="sb-nav-home">
+        <i class="fa-solid fa-house"></i><span>الصفحة الرئيسية</span>
+      </button>
+      <button class="sidebar-nav-link" data-screen="home" onclick="navigateTo('category',{categoryId:'fatayer'})">
+        <i class="fa-solid fa-bread-slice"></i><span>فطائر</span>
+      </button>
+      <button class="sidebar-nav-link" data-screen="home" onclick="navigateTo('category',{categoryId:'croissants'})">
+        <i class="fa-solid fa-cookie"></i><span>كرواسون</span>
+      </button>
+      <button class="sidebar-nav-link" data-screen="home" onclick="navigateTo('category',{categoryId:'sweets'})">
+        <i class="fa-solid fa-cake-candles"></i><span>حلويات</span>
+      </button>
+      <button class="sidebar-nav-link" data-screen="home" onclick="navigateTo('category',{categoryId:'coffee'})">
+        <i class="fa-solid fa-mug-hot"></i><span>قهوة</span>
+      </button>
+      <button class="sidebar-nav-link" data-screen="home" onclick="navigateTo('category',{categoryId:'juices'})">
+        <i class="fa-solid fa-glass-water"></i><span>عصائر</span>
+      </button>
+      <div class="sb-nav-label" style="margin-top:8px">حسابي</div>
+      <button class="sidebar-nav-link" data-screen="orders" onclick="navigateTo('orders')" id="sb-nav-orders">
+        <i class="fa-solid fa-receipt"></i><span>طلباتي</span>
+      </button>
+    </nav>
+
+    <!-- ملخص السلة في الشريط الجانبي -->
+    <div class="sb-cart-section">
+      <button class="sb-cart-header" onclick="navigateTo('cart')" aria-label="عرض السلة">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>سلة الشراء</span>
+        <span class="cart-badge" id="sidebar-cart-badge"></span>
+      </button>
+      <div id="sidebar-cart-summary">
+        <div class="sidebar-cart-empty"><i class="fa-solid fa-cart-shopping"></i><span>السلة فارغة</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══ المحتوى الرئيسي ══ -->
+  <main id="main-content">
+
+    <!-- ─── الشاشة 1: البداية ─────── -->
+    <section id="splash-screen" class="screen" aria-label="شاشة البداية">
+      <div class="splash-bg-pattern"></div>
+      <div class="splash-glow"></div>
+      <div class="splash-content">
+        <!-- SWAP_LOGO: استبدل هذه الكتلة بشعارك النهائي -->
+        <div class="splash-logo-wrap">
+          <div class="splash-logo-circle" id="splash-logo" aria-label="شعار مؤقت">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <div class="splash-logo-tag">شعار · مؤقت</div>
+        </div>
+        <h1 class="splash-brand">برران <span>قهوة</span></h1>
+        <p class="splash-tagline">قهوة فنية ومعجنات طازجة، توصيل لبابك</p>
+        <div id="splash-loader" class="splash-loader">
+          <span></span><span></span><span></span>
+        </div>
+        <button id="get-started-btn" class="splash-btn" onclick="startApp()" style="display:none" aria-label="ابدأ">
+          <i class="fa-solid fa-arrow-left"></i> ابدأ الآن
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ─── الشاشة 2: الرئيسية ─────── -->
+    <section id="home-screen" class="screen" aria-label="الصفحة الرئيسية">
+      <header class="app-header" id="home-header">
+        <!-- SWAP_LOGO -->
+        <div class="hdr-logo" aria-label="شعار مؤقت">
+          <div class="hdr-logo-circle"><i class="fa-solid fa-mug-hot"></i></div>
+          <span class="hdr-logo-tag">LOGO</span>
+        </div>
+        <div style="flex:1">
+          <div class="hdr-title">برران قهوة</div>
+          <div class="hdr-sub"><i class="fa-solid fa-circle" style="color:#4CAF50;font-size:.45rem"></i> طازج وجاهز للطلب</div>
+        </div>
+        <button class="icon-btn" onclick="navigateTo('cart')" id="home-cart-btn" aria-label="السلة">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="home-cart-badge"></span>
+        </button>
+      </header>
+      <div class="screen-scroll" id="home-scroll">
+        <div id="home-content"></div>
+      </div>
+      <nav class="bottom-nav" aria-label="التنقل">
+        <button class="nav-item" id="nav-orders" onclick="navigateTo('orders')">
+          <i class="fa-solid fa-receipt"></i><span>طلباتي</span>
+        </button>
+        <button class="nav-item" id="nav-cart" onclick="navigateTo('cart')">
+          <i class="fa-solid fa-cart-shopping"></i><span>السلة</span>
+          <span class="nav-cart-badge" id="nav-cart-badge"></span>
+        </button>
+        <button class="nav-item" id="nav-categories" onclick="navigateTo('category',{categoryId:'fatayer'})">
+          <i class="fa-solid fa-border-all"></i><span>القائمة</span>
+        </button>
+        <button class="nav-item active" id="nav-home" onclick="navigateTo('home')">
+          <i class="fa-solid fa-house"></i><span>الرئيسية</span>
+        </button>
+      </nav>
+    </section>
+
+
+    <!-- ─── الشاشة 3: الفئة ─────────── -->
+    <section id="category-screen" class="screen" aria-label="منتجات الفئة">
+      <header class="app-header rtl-flex" id="category-header" style="padding:10px 16px;gap:8px"></header>
+      <div class="screen-scroll">
+        <div id="category-content"></div>
+      </div>
+      <nav class="bottom-nav" aria-label="التنقل">
+        <button class="nav-item" onclick="navigateTo('orders')"><i class="fa-solid fa-receipt"></i><span>طلباتي</span></button>
+        <button class="nav-item" onclick="navigateTo('cart')">
+          <i class="fa-solid fa-cart-shopping"></i><span>السلة</span>
+          <span class="nav-cart-badge" id="cat-nav-cart-badge"></span>
+        </button>
+        <button class="nav-item active"><i class="fa-solid fa-border-all"></i><span>القائمة</span></button>
+        <button class="nav-item" onclick="navigateTo('home')"><i class="fa-solid fa-house"></i><span>الرئيسية</span></button>
+      </nav>
+    </section>
+
+
+    <!-- ─── الشاشة 4: المنتج ──────────── -->
+    <section id="product-screen" class="screen" aria-label="تفاصيل المنتج">
+      <header class="app-header rtl-flex" id="product-header" style="padding:10px 16px;gap:8px"></header>
+      <div class="screen-scroll">
+        <div id="product-content"></div>
+      </div>
+      <div class="atc-bar" id="atc-bar">
+        <button class="atc-main-btn" onclick="doAddToCart()" id="add-to-cart-btn">
+          <i class="fa-solid fa-cart-plus"></i> أضف إلى السلة
+        </button>
+        <div class="atc-price-col">
+          <div class="atc-price-lbl">الإجمالي</div>
+          <div class="atc-price-val" id="atc-price-value">— ر.س</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── الشاشة 5: السلة ──────────── -->
+    <section id="cart-screen" class="screen" aria-label="سلة الشراء">
+      <header class="app-header">
+        <button class="icon-btn" onclick="navigateTo('home')" aria-label="رجوع">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div style="flex:1;text-align:center">
+          <div class="hdr-title">سلتي</div>
+          <div class="hdr-sub" id="cart-header-count">0 منتج</div>
+        </div>
+        <div style="width:38px"></div>
+      </header>
+      <div class="screen-scroll">
+        <div id="cart-content"></div>
+      </div>
+    </section>
+
+
+    <!-- ─── الشاشة 6: الدفع ───────────── -->
+    <section id="checkout-screen" class="screen" aria-label="إتمام الطلب">
+      <header class="app-header">
+        <button class="icon-btn" onclick="navigateTo('cart')" aria-label="رجوع">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div style="flex:1;text-align:center">
+          <div class="hdr-title">إتمام الطلب</div>
+          <div class="hdr-sub">خطوة أخيرة!</div>
+        </div>
+        <div class="hdr-logo" aria-hidden="true">
+          <div class="hdr-logo-circle"><i class="fa-solid fa-mug-hot"></i></div>
+        </div>
+      </header>
+      <div class="screen-scroll">
+        <div id="checkout-content"></div>
+      </div>
+    </section>
+
+
+    <!-- ─── الشاشة 7: الطلبات ─────────── -->
+    <section id="orders-screen" class="screen" aria-label="طلباتي">
+      <header class="app-header">
+        <button class="icon-btn" onclick="navigateTo('home')" aria-label="رجوع">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div style="flex:1;text-align:center">
+          <div class="hdr-title">طلباتي</div>
+          <div class="hdr-sub">تتبع طلبك الحالي</div>
+        </div>
+        <div class="hdr-logo" aria-hidden="true">
+          <div class="hdr-logo-circle"><i class="fa-solid fa-mug-hot"></i></div>
+        </div>
+      </header>
+      <div class="screen-scroll" id="orders-scroll">
+        <div id="orders-content"></div>
+      </div>
+      <nav class="bottom-nav" aria-label="التنقل">
+        <button class="nav-item active"><i class="fa-solid fa-receipt"></i><span>طلباتي</span></button>
+        <button class="nav-item" onclick="navigateTo('cart')">
+          <i class="fa-solid fa-cart-shopping"></i><span>السلة</span>
+          <span class="nav-cart-badge" id="orders-nav-cart-badge"></span>
+        </button>
+        <button class="nav-item" onclick="navigateTo('category',{categoryId:'fatayer'})"><i class="fa-solid fa-border-all"></i><span>القائمة</span></button>
+        <button class="nav-item" onclick="navigateTo('home')"><i class="fa-solid fa-house"></i><span>الرئيسية</span></button>
+      </nav>
+    </section>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
