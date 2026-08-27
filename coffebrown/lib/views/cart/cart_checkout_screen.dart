@@ -160,7 +160,7 @@ class _CartCheckoutScreenState extends State<CartCheckoutScreen> {
                           borderRadius: BorderRadius.circular(8),
                           child: LinearProgressIndicator(
                             value: (cart.subtotal / cart.minOrderAmount).clamp(0.0, 1.0),
-                            backgroundColor: Colors.black/20,
+                            backgroundColor: Colors.black.withOpacity(0.2),
                             valueColor: AlwaysStoppedAnimation<Color>(
                               cart.isMinOrderMet ? AppColors.matchaGreen : AppColors.amberPrimary,
                             ),
