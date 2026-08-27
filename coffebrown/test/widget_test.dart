@@ -15,5 +15,6 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const BrownCoffeeApp());
     expect(find.byType(BrownCoffeeApp), findsOneWidget);
+    await tester.pump(const Duration(seconds: 3));
   });
 }
