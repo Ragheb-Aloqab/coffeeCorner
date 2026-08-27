@@ -23,17 +23,32 @@
       --amber-hover: #DFAC54;
       --text-main: #F3EBE1;
       --text-muted: #A3938F;
+      --border-color: rgba(200, 150, 62, 0.15);
+      --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    body.light-theme {
+      --bg-dark: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #F1F5F9;
+      --amber-primary: #B37F2A;
+      --amber-hover: #8C601A;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --border-color: #E2E8F0;
+      --box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
     }
 
     body {
       font-family: 'IBM Plex Sans Arabic', sans-serif;
       background-color: var(--bg-dark);
       color: var(--text-main);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .admin-sidebar {
       background-color: var(--bg-card);
-      border-left: 1px solid rgba(200, 150, 62, 0.15);
+      border-left: 1px solid var(--border-color);
     }
 
     .nav-link-item {
@@ -54,14 +69,14 @@
 
     .stat-card {
       background-color: var(--bg-card);
-      border: 1px solid rgba(200, 150, 62, 0.15);
+      border: 1px solid var(--border-color);
       border-radius: 16px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .stat-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--box-shadow);
     }
 
     .custom-table {
@@ -80,7 +95,7 @@
 
     .custom-table td {
       padding: 14px 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid var(--border-color);
     }
 
     .custom-table tr:hover td {
@@ -96,7 +111,61 @@
       align-items: center;
       gap: 6px;
     }
+
+    /* Dynamic adjustments for Light Theme */
+    body.light-theme .bg-\[\#2C1A1D\] {
+      background-color: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+    }
+
+    body.light-theme .bg-black\/20,
+    body.light-theme .bg-black\/30,
+    body.light-theme .bg-black\/40 {
+      background-color: #F1F5F9 !important;
+      border-color: #CBD5E1 !important;
+      color: #0F172A !important;
+    }
+
+    body.light-theme text-white,
+    body.light-theme .text-white {
+      color: #0F172A !important;
+    }
+
+    body.light-theme .text-gray-300,
+    body.light-theme .text-gray-400 {
+      color: #475569 !important;
+    }
+
+    body.light-theme input,
+    body.light-theme select,
+    body.light-theme textarea {
+      background-color: #F8FAFC !important;
+      color: #0F172A !important;
+      border-color: #CBD5E1 !important;
+    }
+
+    body.light-theme input::placeholder,
+    body.light-theme textarea::placeholder {
+      color: #94A3B8 !important;
+    }
+
+    body.light-theme .border-white\/10,
+    body.light-theme .border-white\/5 {
+      border-color: #E2E8F0 !important;
+    }
+
+    body.light-theme .theme-toggle-btn {
+      background-color: #F1F5F9;
+      color: #0F172A;
+      border: 1px solid #CBD5E1;
+    }
   </style>
+  <script>
+    // Initial Theme Load before render to prevent flickering
+    if (localStorage.getItem('admin_theme') === 'light') {
+      document.documentElement.classList.add('light-theme');
+    }
+  </script>
   @yield('styles')
 </head>
 <body class="min-h-screen flex flex-col md:flex-row">
@@ -105,15 +174,26 @@
   <aside class="admin-sidebar w-full md:w-64 flex-shrink-0 p-4 flex flex-col justify-between min-h-screen">
     <div>
       <!-- Brand Logo -->
-      <div class="flex items-center gap-3 p-3 mb-6 bg-black/20 rounded-xl border border-[#C8963E]/20">
-        <div class="w-10 h-10 rounded-full bg-[#C8963E]/20 flex items-center justify-center text-[#C8963E] text-xl">
-          <i class="fa-solid fa-mug-hot"></i>
-        </div>
-        <div>
-          <h1 class="font-bold text-lg text-[#C8963E]">برون كوفي</h1>
-          <p class="text-xs text-gray-400">لوحة التحكم والإدارة</p>
+      <div class="flex items-center justify-between p-3 mb-6 bg-black/20 rounded-xl border border-[#C8963E]/20">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#C8963E]/20 flex items-center justify-center text-[#C8963E] text-xl">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg text-[#C8963E]">برون كوفي</h1>
+            <p class="text-xs text-gray-400">لوحة التحكم والإدارة</p>
+          </div>
         </div>
       </div>
+
+      <!-- Theme Switcher Button -->
+      <button type="button" id="theme-toggle" onclick="toggleTheme()" class="theme-toggle-btn w-full py-2.5 px-4 mb-5 bg-black/20 border border-white/10 rounded-xl flex items-center justify-between text-sm font-semibold transition hover:opacity-90">
+        <span class="flex items-center gap-2">
+          <i id="theme-icon" class="fa-solid fa-sun text-amber-400 text-base"></i>
+          <span id="theme-text">الوضع الفاتح</span>
+        </span>
+        <span class="text-xs text-gray-400 bg-white/10 px-2 py-0.5 rounded">تبديل</span>
+      </button>
 
       <!-- Navigation -->
       <nav class="space-y-1">
@@ -204,6 +284,42 @@
 
     @yield('content')
   </main>
+
+  <script>
+    function updateThemeUI() {
+      const isLight = document.body.classList.contains('light-theme') || document.documentElement.classList.contains('light-theme');
+      const textEl = document.getElementById('theme-text');
+      const iconEl = document.getElementById('theme-icon');
+
+      if (isLight) {
+        document.body.classList.add('light-theme');
+        if (textEl) textEl.textContent = 'الوضع الداكن';
+        if (iconEl) {
+          iconEl.className = 'fa-solid fa-moon text-indigo-400 text-base';
+        }
+      } else {
+        document.body.classList.remove('light-theme');
+        if (textEl) textEl.textContent = 'الوضع الفاتح';
+        if (iconEl) {
+          iconEl.className = 'fa-solid fa-sun text-amber-400 text-base';
+        }
+      }
+    }
+
+    function toggleTheme() {
+      const isLight = document.body.classList.toggle('light-theme');
+      document.documentElement.classList.toggle('light-theme', isLight);
+      localStorage.setItem('admin_theme', isLight ? 'light' : 'dark');
+      updateThemeUI();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('admin_theme') === 'light') {
+        document.body.classList.add('light-theme');
+      }
+      updateThemeUI();
+    });
+  </script>
 
   @yield('scripts')
 </body>
