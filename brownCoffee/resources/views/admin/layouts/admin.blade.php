@@ -127,6 +127,11 @@
           <span class="font-medium">إدارة الطلبات</span>
         </a>
 
+        <a href="{{ route('admin.customers.index') }}" class="nav-link-item {{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">
+          <i class="fa-solid fa-users text-lg"></i>
+          <span class="font-medium">إدارة العملاء</span>
+        </a>
+
         <a href="{{ route('admin.products.index') }}" class="nav-link-item {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
           <i class="fa-solid fa-utensils text-lg"></i>
           <span class="font-medium">المنتجات والقائمة</span>
