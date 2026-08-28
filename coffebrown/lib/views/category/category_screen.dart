@@ -11,8 +11,9 @@ import '../product/product_detail_screen.dart';
 
 class CategoryScreen extends StatelessWidget {
   final String categoryId;
+  final bool isEmbedded;
 
-  const CategoryScreen({Key? key, required this.categoryId}) : super(key: key);
+  const CategoryScreen({Key? key, required this.categoryId, this.isEmbedded = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +36,13 @@ class CategoryScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.bgCard,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(FontAwesomeIcons.chevronRight, color: AppColors.textMain, size: 18),
-          onPressed: () => Navigator.pop(context),
-        ),
+        automaticallyImplyLeading: !isEmbedded,
+        leading: isEmbedded
+            ? null
+            : IconButton(
+                icon: const Icon(FontAwesomeIcons.chevronRight, color: AppColors.textMain, size: 18),
+                onPressed: () => Navigator.pop(context),
+              ),
         title: Row(
           children: [
             Icon(IconHelper.getIconData(category.icon), size: 18, color: AppColors.amberPrimary),
