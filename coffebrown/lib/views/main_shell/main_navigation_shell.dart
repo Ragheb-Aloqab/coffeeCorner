@@ -39,8 +39,8 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
     final List<Widget> pages = [
       const HomeViewContent(),
       const CategoryScreen(categoryId: 'fatayer', isEmbedded: true),
-      const CartCheckoutScreen(isEmbedded: true),
-      const OrdersScreen(isEmbedded: true),
+      CartCheckoutScreen(isEmbedded: true),
+      OrdersScreen(isEmbedded: true),
     ];
 
     return Scaffold(
