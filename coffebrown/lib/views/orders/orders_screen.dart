@@ -6,7 +6,8 @@ import '../../models/order_model.dart';
 import '../../providers/cart_order_provider.dart';
 
 class OrdersScreen extends StatefulWidget {
-  const OrdersScreen({Key? key}) : super(key: key);
+  final bool isEmbedded;
+  const OrdersScreen({Key? key, this.isEmbedded = false}) : super(key: key);
 
   @override
   State<OrdersScreen> createState() => _OrdersScreenState();
@@ -44,10 +45,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.bgCard,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(FontAwesomeIcons.chevronRight, color: AppColors.textMain, size: 18),
-          onPressed: () => Navigator.pop(context),
-        ),
+        automaticallyImplyLeading: !widget.isEmbedded,
+        leading: widget.isEmbedded
+            ? null
+            : IconButton(
+                icon: const Icon(FontAwesomeIcons.chevronRight, color: AppColors.textMain, size: 18),
+                onPressed: () => Navigator.pop(context),
+              ),
         title: const Text('طلباتي وتتبع حالة الطلب', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textMain)),
       ),
       body: SingleChildScrollView(

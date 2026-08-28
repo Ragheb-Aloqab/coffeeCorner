@@ -6,7 +6,8 @@ import '../../providers/cart_order_provider.dart';
 import '../orders/orders_screen.dart';
 
 class CartCheckoutScreen extends StatefulWidget {
-  const CartCheckoutScreen({Key? key}) : super(key: key);
+  final bool isEmbedded;
+  const CartCheckoutScreen({Key? key, this.isEmbedded = false}) : super(key: key);
 
   @override
   State<CartCheckoutScreen> createState() => _CartCheckoutScreenState();
@@ -63,7 +64,7 @@ class _CartCheckoutScreenState extends State<CartCheckoutScreen> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const OrdersScreen()),
+        MaterialPageRoute(builder: (_) => const OrdersScreen(isEmbedded: true)),
       );
     } catch (e) {
       if (!mounted) return;
@@ -85,10 +86,13 @@ class _CartCheckoutScreenState extends State<CartCheckoutScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.bgCard,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(FontAwesomeIcons.chevronRight, color: AppColors.textMain, size: 18),
-          onPressed: () => Navigator.pop(context),
-        ),
+        automaticallyImplyLeading: !widget.isEmbedded,
+        leading: widget.isEmbedded
+            ? null
+            : IconButton(
+                icon: const Icon(FontAwesomeIcons.chevronRight, color: AppColors.textMain, size: 18),
+                onPressed: () => Navigator.pop(context),
+              ),
         title: const Text('سلة الشراء وإتمام الطلب', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textMain)),
       ),
       body: cart.cartItems.isEmpty
