@@ -7,8 +7,6 @@ import '../../models/product_model.dart';
 import '../../providers/cart_order_provider.dart';
 import '../../providers/catalog_provider.dart';
 import '../cart/cart_checkout_screen.dart';
-import '../category/category_screen.dart';
-import '../orders/orders_screen.dart';
 import '../product/product_detail_screen.dart';
 
 import '../main_shell/main_navigation_shell.dart';
