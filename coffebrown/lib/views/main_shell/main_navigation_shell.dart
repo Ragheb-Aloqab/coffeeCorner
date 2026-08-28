@@ -6,6 +6,7 @@ import '../../providers/cart_order_provider.dart';
 import '../cart/cart_checkout_screen.dart';
 import '../category/category_screen.dart';
 import '../home/home_screen.dart';
+import '../orders/orders_screen.dart';
 import '../../providers/theme_provider.dart';
 
 class MainNavigationShell extends StatefulWidget {
