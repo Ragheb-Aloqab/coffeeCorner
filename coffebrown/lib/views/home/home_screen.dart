@@ -11,45 +11,32 @@ import '../category/category_screen.dart';
 import '../orders/orders_screen.dart';
 import '../product/product_detail_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+import '../main_shell/main_navigation_shell.dart';
+
+class HomeScreen extends StatelessWidget {
+  final int initialIndex;
+  const HomeScreen({Key? key, this.initialIndex = 0}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  Widget build(BuildContext context) {
+    return MainNavigationShell(initialIndex: initialIndex);
+  }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  int _currentNavIndex = 0;
+class HomeViewContent extends StatefulWidget {
+  const HomeViewContent({Key? key}) : super(key: key);
 
+  @override
+  State<HomeViewContent> createState() => _HomeViewContentState();
+}
+
+class _HomeViewContentState extends State<HomeViewContent> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<CatalogProvider>(context, listen: false).fetchAllCatalogData();
     });
-  }
-
-  void _onBottomNavTapped(int index) {
-    if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => const CategoryScreen(categoryId: 'fatayer')),
-      );
-    } else if (index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => const CartCheckoutScreen()),
-      );
-    } else if (index == 3) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => const OrdersScreen()),
-      );
-    } else {
-      setState(() {
-        _currentNavIndex = index;
-      });
-    }
   }
 
   @override
@@ -361,32 +348,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SliverToBoxAdapter(child: SizedBox(height: 24)),
                     ],
                   ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentNavIndex,
-        onTap: _onBottomNavTapped,
-        backgroundColor: AppColors.bgCard,
-        selectedItemColor: AppColors.amberPrimary,
-        unselectedItemColor: AppColors.textMuted,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.house, size: 18),
-            label: 'الرئيسية',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.borderAll, size: 18),
-            label: 'القائمة',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.cartShopping, size: 18),
-            label: 'السلة',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.receipt, size: 18),
-            label: 'طلباتي',
-          ),
-        ],
       ),
     );
   }
