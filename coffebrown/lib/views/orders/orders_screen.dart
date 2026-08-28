@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../models/order_model.dart';
 import '../../providers/cart_order_provider.dart';
+import '../../providers/theme_provider.dart';
 
 class OrdersScreen extends StatefulWidget {
   final bool isEmbedded;
@@ -38,12 +39,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context);
     final cart = Provider.of<CartOrderProvider>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.bgDark,
+      backgroundColor: theme.bgDark,
       appBar: AppBar(
-        backgroundColor: AppColors.bgCard,
+        backgroundColor: theme.bgCard,
         elevation: 0,
         automaticallyImplyLeading: !widget.isEmbedded,
         leading: widget.isEmbedded

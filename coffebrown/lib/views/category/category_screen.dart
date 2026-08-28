@@ -8,6 +8,9 @@ import '../../providers/cart_order_provider.dart';
 import '../../providers/catalog_provider.dart';
 import '../cart/cart_checkout_screen.dart';
 import '../product/product_detail_screen.dart';
+import '../../core/utils/page_transitions.dart';
+
+import '../../providers/theme_provider.dart';
 
 class CategoryScreen extends StatelessWidget {
   final String categoryId;
@@ -17,6 +20,7 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context);
     final catalog = Provider.of<CatalogProvider>(context);
     final cart = Provider.of<CartOrderProvider>(context);
 
@@ -32,9 +36,9 @@ class CategoryScreen extends StatelessWidget {
     }).toList();
 
     return Scaffold(
-      backgroundColor: AppColors.bgDark,
+      backgroundColor: theme.bgDark,
       appBar: AppBar(
-        backgroundColor: AppColors.bgCard,
+        backgroundColor: theme.bgCard,
         elevation: 0,
         automaticallyImplyLeading: !isEmbedded,
         leading: isEmbedded
@@ -94,9 +98,9 @@ class CategoryScreen extends StatelessWidget {
   Widget _buildProductCard(BuildContext context, ProductModel product, CartOrderProvider cart) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
+        PageTransitions.pushSmooth(
           context,
-          MaterialPageRoute(builder: (_) => ProductDetailScreen(productId: product.id)),
+          ProductDetailScreen(productId: product.id),
         );
       },
       child: Container(
@@ -109,17 +113,20 @@ class CategoryScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                child: product.image != null && product.image!.isNotEmpty
-                    ? Image.network(
-                        product.image!,
-                        width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => _buildFallbackImage(product),
-                      )
-                    : _buildFallbackImage(product),
+              child: Hero(
+                tag: 'product_image_${product.id}',
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                  child: product.image != null && product.image!.isNotEmpty
+                      ? Image.network(
+                          product.image!,
+                          width: double.infinity,
+                          height: double.infinity,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => _buildFallbackImage(product),
+                        )
+                      : _buildFallbackImage(product),
+                ),
               ),
             ),
             Padding(

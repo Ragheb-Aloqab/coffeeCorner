@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'core/theme/app_theme.dart';
 import 'providers/cart_order_provider.dart';
 import 'providers/catalog_provider.dart';
+import 'providers/theme_provider.dart';
 import 'views/splash/splash_screen.dart';
 
 void main() {
@@ -16,20 +17,27 @@ class BrownCoffeeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => CatalogProvider()),
         ChangeNotifierProvider(create: (_) => CartOrderProvider()),
       ],
-      child: MaterialApp(
-        title: 'برون كوفي — Brown Coffee',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.darkTheme,
-        builder: (context, child) {
-          return Directionality(
-            textDirection: TextDirection.rtl,
-            child: child ?? const SizedBox(),
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            title: 'برون كوفي — Brown Coffee',
+            debugShowCheckedModeBanner: false,
+            themeMode: themeProvider.themeMode,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            builder: (context, childWidget) {
+              return Directionality(
+                textDirection: TextDirection.rtl,
+                child: childWidget ?? const SizedBox(),
+              );
+            },
+            home: const SplashScreen(),
           );
         },
-        home: const SplashScreen(),
       ),
     );
   }

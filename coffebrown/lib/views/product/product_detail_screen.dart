@@ -6,6 +6,7 @@ import '../../core/utils/icon_helper.dart';
 import '../../models/product_model.dart';
 import '../../providers/cart_order_provider.dart';
 import '../../providers/catalog_provider.dart';
+import '../../providers/theme_provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final int productId;
@@ -36,14 +37,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context);
     final catalog = Provider.of<CatalogProvider>(context);
     final cart = Provider.of<CartOrderProvider>(context);
     final product = catalog.getProductById(widget.productId);
 
     if (product == null) {
       return Scaffold(
-        backgroundColor: AppColors.bgDark,
-        appBar: AppBar(backgroundColor: AppColors.bgCard),
+        backgroundColor: theme.bgDark,
+        appBar: AppBar(backgroundColor: theme.bgCard),
         body: const Center(child: Text('المنتج غير موجود')),
       );
     }
@@ -52,7 +54,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final double totalPrice = unitPrice * _quantity;
 
     return Scaffold(
-      backgroundColor: AppColors.bgDark,
+      backgroundColor: theme.bgDark,
       body: SafeArea(
         child: Column(
           children: [
@@ -79,23 +81,26 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Hero Product Image Container
-                    Container(
-                      height: 250,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: AppColors.bgCard,
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: AppColors.amberPrimary.withOpacity(0.2)),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(24),
-                        child: product.image != null && product.image!.isNotEmpty
-                            ? Image.network(
-                                product.image!,
-                                fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) => _buildFallbackImage(product),
-                              )
-                            : _buildFallbackImage(product),
+                    Hero(
+                      tag: 'product_image_${product.id}',
+                      child: Container(
+                        height: 250,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: AppColors.bgCard,
+                          borderRadius: BorderRadius.circular(24),
+                          border: Border.all(color: AppColors.amberPrimary.withOpacity(0.2)),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(24),
+                          child: product.image != null && product.image!.isNotEmpty
+                              ? Image.network(
+                                  product.image!,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (_, __, ___) => _buildFallbackImage(product),
+                                )
+                              : _buildFallbackImage(product),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -137,14 +142,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       ),
                     const SizedBox(height: 24),
 
-                    // Optional Matcha Addon
+                    // Optional Matcha Addon with Animated Container
                     if (product.hasMatchaAddon) ...[
-                      Container(
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: AppColors.bgCard,
+                          color: _matchaAddonSelected ? AppColors.matchaGreen.withOpacity(0.12) : AppColors.bgCard,
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: AppColors.matchaGreen.withOpacity(0.4)),
+                          border: Border.all(
+                            color: _matchaAddonSelected ? AppColors.matchaGreen : AppColors.matchaGreen.withOpacity(0.3),
+                            width: _matchaAddonSelected ? 1.8 : 1,
+                          ),
                         ),
                         child: Row(
                           children: [
@@ -181,7 +190,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       const SizedBox(height: 24),
                     ],
 
-                    // Quantity Counter Row
+                    // Quantity Counter Row with Animated Switcher
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -200,9 +209,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                                child: Text(
-                                  '$_quantity',
-                                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                child: AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 200),
+                                  transitionBuilder: (child, anim) => ScaleTransition(scale: anim, child: child),
+                                  child: Text(
+                                    '$_quantity',
+                                    key: ValueKey<int>(_quantity),
+                                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
                               IconButton(

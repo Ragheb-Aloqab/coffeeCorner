@@ -8,7 +8,9 @@ import '../../providers/cart_order_provider.dart';
 import '../../providers/catalog_provider.dart';
 import '../cart/cart_checkout_screen.dart';
 import '../product/product_detail_screen.dart';
+import '../../providers/theme_provider.dart';
 
+import '../../core/utils/page_transitions.dart';
 import '../main_shell/main_navigation_shell.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -39,13 +41,14 @@ class _HomeViewContentState extends State<HomeViewContent> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context);
     final catalog = Provider.of<CatalogProvider>(context);
     final cart = Provider.of<CartOrderProvider>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.bgDark,
+      backgroundColor: theme.bgDark,
       appBar: AppBar(
-        backgroundColor: AppColors.bgCard,
+        backgroundColor: theme.bgCard,
         elevation: 0,
         title: Row(
           children: [
@@ -75,6 +78,19 @@ class _HomeViewContentState extends State<HomeViewContent> {
           ],
         ),
         actions: [
+          Consumer<ThemeProvider>(
+            builder: (context, theme, _) {
+              return IconButton(
+                icon: Icon(
+                  theme.isDarkMode ? FontAwesomeIcons.sun : FontAwesomeIcons.moon,
+                  color: AppColors.amberPrimary,
+                  size: 18,
+                ),
+                tooltip: theme.isDarkMode ? 'الوضع الفاتح' : 'الوضع الداكن',
+                onPressed: () => theme.toggleTheme(),
+              );
+            },
+          ),
           Stack(
             alignment: Alignment.center,
             children: [
@@ -393,9 +409,9 @@ class _HomeViewContentState extends State<HomeViewContent> {
   Widget _buildProductCard(BuildContext context, ProductModel product, CartOrderProvider cart) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
+        PageTransitions.pushSmooth(
           context,
-          MaterialPageRoute(builder: (_) => ProductDetailScreen(productId: product.id)),
+          ProductDetailScreen(productId: product.id),
         );
       },
       child: Container(
@@ -411,17 +427,20 @@ class _HomeViewContentState extends State<HomeViewContent> {
             Expanded(
               child: Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                    child: product.image != null && product.image!.isNotEmpty
-                        ? Image.network(
-                            product.image!,
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => _buildFallbackImage(product),
-                          )
-                        : _buildFallbackImage(product),
+                  Hero(
+                    tag: 'product_image_${product.id}',
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                      child: product.image != null && product.image!.isNotEmpty
+                          ? Image.network(
+                              product.image!,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) => _buildFallbackImage(product),
+                            )
+                          : _buildFallbackImage(product),
+                    ),
                   ),
                   if (product.hasMatchaAddon)
                     Positioned(

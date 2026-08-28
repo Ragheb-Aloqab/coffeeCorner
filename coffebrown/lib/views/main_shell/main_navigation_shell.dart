@@ -6,7 +6,7 @@ import '../../providers/cart_order_provider.dart';
 import '../cart/cart_checkout_screen.dart';
 import '../category/category_screen.dart';
 import '../home/home_screen.dart';
-import '../orders/orders_screen.dart';
+import '../../providers/theme_provider.dart';
 
 class MainNavigationShell extends StatefulWidget {
   final int initialIndex;
@@ -33,6 +33,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context);
     final cart = Provider.of<CartOrderProvider>(context);
 
     final List<Widget> pages = [
@@ -43,28 +44,28 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
     ];
 
     return Scaffold(
-      backgroundColor: AppColors.bgDark,
+      backgroundColor: theme.bgDark,
       body: IndexedStack(
         index: _currentIndex,
         children: pages,
       ),
       bottomNavigationBar: Container(
-        color: AppColors.bgDark,
+        color: theme.bgDark,
         padding: const EdgeInsets.fromLTRB(16, 6, 16, 16),
         child: Container(
           height: 66,
           decoration: BoxDecoration(
-            color: AppColors.bgCard,
+            color: theme.bgCard,
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: AppColors.amberPrimary.withOpacity(0.3), width: 1.5),
+            border: Border.all(color: theme.amberPrimary.withOpacity(0.3), width: 1.5),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.4),
+                color: Colors.black.withOpacity(theme.isDarkMode ? 0.4 : 0.08),
                 blurRadius: 16,
                 offset: const Offset(0, 6),
               ),
               BoxShadow(
-                color: AppColors.amberPrimary.withOpacity(0.08),
+                color: theme.amberPrimary.withOpacity(0.08),
                 blurRadius: 10,
                 spreadRadius: 1,
               ),
@@ -74,18 +75,24 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildNavItem(
+                context: context,
+                theme: theme,
                 index: 0,
                 label: 'الرئيسية',
                 icon: FontAwesomeIcons.house,
                 isActive: _currentIndex == 0,
               ),
               _buildNavItem(
+                context: context,
+                theme: theme,
                 index: 1,
                 label: 'القائمة',
                 icon: FontAwesomeIcons.borderAll,
                 isActive: _currentIndex == 1,
               ),
               _buildNavItem(
+                context: context,
+                theme: theme,
                 index: 2,
                 label: 'السلة',
                 icon: FontAwesomeIcons.cartShopping,
@@ -93,6 +100,8 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
                 badgeCount: cart.itemCount,
               ),
               _buildNavItem(
+                context: context,
+                theme: theme,
                 index: 3,
                 label: 'طلباتي',
                 icon: FontAwesomeIcons.receipt,
@@ -106,6 +115,8 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
   }
 
   Widget _buildNavItem({
+    required BuildContext context,
+    required ThemeProvider theme,
     required int index,
     required String label,
     required IconData icon,
@@ -119,10 +130,10 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
         duration: const Duration(milliseconds: 250),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: isActive ? AppColors.amberPrimary.withOpacity(0.18) : Colors.transparent,
+          color: isActive ? theme.amberPrimary.withOpacity(0.18) : Colors.transparent,
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: isActive ? AppColors.amberPrimary.withOpacity(0.5) : Colors.transparent,
+            color: isActive ? theme.amberPrimary.withOpacity(0.5) : Colors.transparent,
             width: 1,
           ),
         ),
@@ -135,7 +146,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
                 Icon(
                   icon,
                   size: 18,
-                  color: isActive ? AppColors.amberPrimary : AppColors.textMuted,
+                  color: isActive ? theme.amberPrimary : theme.textMuted,
                 ),
                 if (badgeCount > 0)
                   Positioned(
@@ -143,8 +154,8 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
                     right: -8,
                     child: Container(
                       padding: const EdgeInsets.all(3),
-                      decoration: const BoxDecoration(
-                        color: AppColors.amberPrimary,
+                      decoration: BoxDecoration(
+                        color: theme.amberPrimary,
                         shape: BoxShape.circle,
                       ),
                       constraints: const BoxConstraints(minWidth: 14, minHeight: 14),
@@ -165,10 +176,10 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
               const SizedBox(width: 8),
               Text(
                 label,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.amberPrimary,
+                  color: theme.amberPrimary,
                 ),
               ),
             ],
